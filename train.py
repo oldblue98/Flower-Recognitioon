@@ -52,6 +52,7 @@ def load_train_df(path):
     train_df = train_df.reset_index(drop=True)
     label_dic = {"daisy":0, "dandelion":1, "rose":2,"sunflower":3, "tulip":4}
     train_df["label"]=train_df["label"].map(label_dic)
+    return train_df
 
 def main():
 
