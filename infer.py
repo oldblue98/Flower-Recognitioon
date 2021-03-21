@@ -41,7 +41,8 @@ from model.utils import seed_everything
 
 
 test = pd.DataFrame()
-test['image_path'] = list(os.listdir('./data/test/'))
+test['image_path'] = [os.path.join(base_test_data_path, f) for f in os.listdir('./data/test/')]
+test = test.sort_values('image_path').reset_index(drop=True)
 
 def load_train_df(path):
     train_df = pd.DataFrame()
@@ -127,9 +128,7 @@ def infer():
             logger.debug("epoch:{}".format(epoch))
             with torch.no_grad():
                 for _ in range(CFG['tta']):
-                    logger.debug("tta:{}".format(_))
                     val_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, val_loader, device)]
-                    logger.debug("val finished")
                     tst_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, tst_loader, device)]
                     logger.debug("test finished")
 
