@@ -2,9 +2,9 @@
     "fold_num": 5,
     "seed": 6,
     "model_arch": "tf_efficientnet_b0",
-    "img_size_h": 50, 
-    "img_size_w": 50, 
-    "epochs": 8,
+    "img_size_h": 200, 
+    "img_size_w": 160, 
+    "epochs": 30,
     "train_bs": 128,
     "valid_bs": 128,
     "T_0": 10,
@@ -17,9 +17,17 @@
     "transform_way": "center",
     "tta": 2,
     "used_epochs": [
-        6,7
+        25,
+        26,
+        27,
+        28,
+        29
     ],
     "weights": [
-        1,1
+        1,
+        1,
+        1,
+        1,
+        1
     ]
 }
