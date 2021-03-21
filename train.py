@@ -93,10 +93,10 @@ def main():
         loss_fn = nn.CrossEntropyLoss().to(device)
 
         for epoch in range(CFG['epochs']):
-            train_one_epoch(epoch, model, loss_tr, optimizer, train_loader, device, CFG['accum_iter'], CFG['verbose_step'],scheduler=scheduler, schd_batch_update=False)
+            train_one_epoch(epoch, model, loss_tr, optimizer, train_loader, device, CFG['verbose_step'],scheduler=scheduler, schd_batch_update=False)
 
             with torch.no_grad():
-                valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['accum_iter'], CFG['verbose_step'], scheduler=None, schd_loss_update=False)
+                valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['verbose_step'], scheduler=None, schd_loss_update=False)
 
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
