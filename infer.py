@@ -157,8 +157,9 @@ if __name__ == '__main__':
     tst_preds_label_all = infer()
     print(tst_preds_label_all.shape)
     # 予測結果を保存
-    test['Class'] = tst_preds_label_all
+    sub = pd.read_csv("./data/sample_submission.csv")
+    sub['class'] = tst_preds_label_all
     label_dic = {"daisy":0, "dandelion":1, "rose":2,"sunflower":3, "tulip":4}
-    test["Class"] = test["Class"].map(label_dic)
-    logger.debug(test.value_counts("Class"))
-    test.to_csv(f'data/output/submission_{config_filename}_{CFG["model_arch"]}.csv', index=False)
+    sub["class"] = sub["class"].map(label_dic)
+    logger.debug(sub.value_counts("class"))
+    sub.to_csv(f'data/output/submission_{config_filename}_{CFG["model_arch"]}.csv', index=False)
