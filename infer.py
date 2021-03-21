@@ -127,6 +127,7 @@ def infer():
             logger.debug("epoch:{}".format(epoch))
             with torch.no_grad():
                 for _ in range(CFG['tta']):
+                    logger.debug("tta:{}".format(_))
                     val_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, val_loader, device)]
                     tst_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, tst_loader, device)]
 
