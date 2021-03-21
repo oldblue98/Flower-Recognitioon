@@ -77,7 +77,7 @@ def main():
         """
         logger.debug(f'Training with fold {fold} started (train:{len(trn_idx)}, val:{len(val_idx)})')
 
-        train_loader, val_loader = prepare_dataloader(train, (CFG["img_size_h"], CFG["img_size_w"]), trn_idx, val_idx, data_root='./data/train', train_bs=CFG["train_bs"], valid_bs=CFG["valid_bs"], num_workers=CFG["num_workers"], do_fmix=False, do_cutmix=False, transform_way=CFG["transform_way"])
+        train_loader, val_loader = prepare_dataloader(train, (CFG["img_size_h"], CFG["img_size_w"]), trn_idx, val_idx, data_root='./data/train', train_bs=CFG["train_bs"], valid_bs=CFG["valid_bs"], num_workers=CFG["num_workers"], transform_way=CFG["transform_way"])
 
         device = torch.device(CFG['device'])
 
