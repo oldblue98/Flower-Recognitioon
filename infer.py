@@ -41,7 +41,7 @@ from model.utils import seed_everything
 
 
 test = pd.DataFrame()
-test['Image'] = list(os.listdir('./data/test'))
+test['Image'] = list(os.listdir('./data/test/'))
 
 def load_train_df(path):
     train_df = pd.DataFrame()
@@ -62,11 +62,12 @@ def load_train_df(path):
     train_df = train_df.reset_index(drop=True)
     label_dic = {"daisy":0, "dandelion":1, "rose":2,"sunflower":3, "tulip":4}
     train_df["label"]=train_df["label"].map(label_dic)
+    return train_df
 
 
 def infer():
     logger.debug("pred start")
-    train = load_train_df("./data/train")
+    train = load_train_df("./data/train/")
     seed_everything(CFG['seed'])
 
     folds = StratifiedKFold(n_splits=CFG['fold_num'], shuffle=True, random_state=CFG['seed']).split(np.arange(train.shape[0]), train.label.values)
@@ -94,7 +95,7 @@ def infer():
         input_shape=(CFG["img_size_h"], CFG["img_size_w"])
 
         valid_ = train.loc[val_idx,:].reset_index(drop=True)
-        valid_ds = FlowerDataset(valid_, './data/train', transforms=get_inference_transforms(input_shape,CFG["transform_way"]), shape = input_shape, output_label=False)
+        valid_ds = FlowerDataset(valid_, './data/train', transforms=get_inference_transforms(input_shape,CFG["transform_way"]), shape=input_shape, output_label=False)
 
         test_ds = FlowerDataset(test, './data/test', transforms=get_inference_transforms(input_shape,CFG["transform_way"]),shape=input_shape, output_label=False)
 
