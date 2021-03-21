@@ -7,7 +7,7 @@ from .transform import get_train_transforms, get_valid_transforms
 from .dataset import FlowerDataset
 
 
-def prepare_dataloader(df, input_shape, trn_idx, val_idx, train_bs, valid_bs, num_workers):
+def prepare_dataloader(df, input_shape, trn_idx, val_idx, data_root, train_bs, valid_bs, num_workers):
     """
     データローダーを作成する関数
     """

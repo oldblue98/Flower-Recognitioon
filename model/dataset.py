@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 import os
 
 class FlowerDataset(Dataset):
-    def __init__(self, df, 
+    def __init__(self, df, data_root,
                  shape, # 追加
                  transforms=None,
                  output_label=True,
