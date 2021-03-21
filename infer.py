@@ -144,8 +144,8 @@ def infer():
     y_preds_df.loc[:, cols] = tst_preds #.reshape(len(tst_preds), -1)
 
     # 予測値を保存
-    oof_df.to_csv(f'output/{config_filename}_{CFG["model_arch"]}_oof.csv', index=False)
-    y_preds_df.to_csv(f'output/{config_filename}_{CFG["model_arch"]}_test.csv', index=False)
+    oof_df.to_csv(f'data/output/{config_filename}_{CFG["model_arch"]}_oof.csv', index=False)
+    y_preds_df.to_csv(f'data/output/{config_filename}_{CFG["model_arch"]}_test.csv', index=False)
 
     del model
     torch.cuda.empty_cache()
@@ -161,4 +161,4 @@ if __name__ == '__main__':
     label_dic = {"daisy":0, "dandelion":1, "rose":2,"sunflower":3, "tulip":4}
     test["Class"] = test["Class"].map(label_dic)
     logger.debug(test.value_counts("Class"))
-    test.to_csv(f'output/submission_{config_filename}_{CFG["model_arch"]}.csv', index=False)
+    test.to_csv(f'data/output/submission_{config_filename}_{CFG["model_arch"]}.csv', index=False)
