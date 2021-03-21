@@ -15,8 +15,8 @@ def prepare_dataloader(df, input_shape, trn_idx, val_idx, data_root, train_bs, v
     train_ = df.loc[trn_idx,:].reset_index(drop=True)
     valid_ = df.loc[val_idx,:].reset_index(drop=True)
 
-    train_ds = FlowerDataset(train_, input_shape, transforms=get_train_transforms(input_shape, transform_way), output_label=True, one_hot_label=False)
-    valid_ds = FlowerDataset(valid_, input_shape, transforms=get_valid_transforms(input_shape, transform_way), output_label=True)
+    train_ds = FlowerDataset(train_, input_shape, data_root, transforms=get_train_transforms(input_shape, transform_way), output_label=True, one_hot_label=False)
+    valid_ds = FlowerDataset(valid_, input_shape, data_root, transforms=get_valid_transforms(input_shape, transform_way), output_label=True)
 
     train_loader = torch.utils.data.DataLoader(
         train_ds,
