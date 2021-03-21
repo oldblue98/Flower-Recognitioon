@@ -41,7 +41,7 @@ from model.utils import seed_everything
 
 
 test = pd.DataFrame()
-test['Image'] = list(os.listdir('./data/test/'))
+test['image_path'] = list(os.listdir('./data/test/'))
 
 def load_train_df(path):
     train_df = pd.DataFrame()
