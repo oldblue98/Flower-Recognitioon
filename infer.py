@@ -129,7 +129,9 @@ def infer():
                 for _ in range(CFG['tta']):
                     logger.debug("tta:{}".format(_))
                     val_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, val_loader, device)]
+                    logger.debug("val finished")
                     tst_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, tst_loader, device)]
+                    logger.debug("test finished")
 
         val_preds = np.mean(val_preds, axis=0)
         val_loss.append(log_loss(valid_.label.values, val_preds))
