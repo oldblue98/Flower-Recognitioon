@@ -124,7 +124,7 @@ def infer():
         #for epoch in range(CFG['epochs']-3):
         for i, epoch in enumerate(CFG['used_epochs']):
             model.load_state_dict(torch.load(f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}'))
-
+            logger.debug("epoch:{}".format(epoch))
             with torch.no_grad():
                 for _ in range(CFG['tta']):
                     val_preds += [CFG['weights'][i]/sum(CFG['weights'])*inference_one_epoch(model, val_loader, device)]
