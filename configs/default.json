@@ -1,9 +1,9 @@
 {
     "fold_num": 5,
     "seed": 6,
-    "model_arch": "tf_efficientnet_b0",
-    "img_size_h": 200, 
-    "img_size_w": 160, 
+    "model_arch": "vit_base_patch16_224",
+    "img_size_h": 224, 
+    "img_size_w": 224, 
     "epochs": 30,
     "train_bs": 128,
     "valid_bs": 128,
