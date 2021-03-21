@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-from utils import get_img
+from .utils import get_img
 import os
 
 class FlowerDataset(Dataset):
