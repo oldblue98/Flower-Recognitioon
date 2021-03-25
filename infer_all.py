@@ -163,7 +163,8 @@ def infer(CFG):
 
 if __name__ == '__main__':
     for config_filename in CFG_list:
-        CFG = json.load(config_filename)
+        with open(config_filename) as f:
+            CFG = json.load(f)
         logger.debug(CFG)
         tst_preds_label_all = infer(CFG)
         print(tst_preds_label_all.shape)
