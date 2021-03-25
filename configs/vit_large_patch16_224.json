@@ -5,6 +5,8 @@
     "img_size_h": 224, 
     "img_size_w": 224, 
     "epochs": 30,
+    "min_epoch":7,
+    "patience":8,
     "train_bs": 64,
     "valid_bs": 64,
     "T_0": 10,

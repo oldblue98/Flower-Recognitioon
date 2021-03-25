@@ -92,7 +92,8 @@ def main():
 
         loss_tr = nn.CrossEntropyLoss().to(device) #MyCrossEntropyLoss().to(device)
         loss_fn = nn.CrossEntropyLoss().to(device)
-        patience = 7
+        patience = CFG['patience']
+        min_epoch = CFG['min_epoch']
         early_stopping = EarlyStopping(patience=patience, verbose=True)
 
         for epoch in range(CFG['epochs']):
@@ -105,7 +106,8 @@ def main():
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
             # early stopping
-            early_stopping(loss_val)
+            if epoch > min_epoch:
+                early_stopping(loss_val)
             if early_stopping.early_stop:
                 print("Early stopping")
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')

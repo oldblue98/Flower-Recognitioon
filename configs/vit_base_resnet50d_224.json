@@ -4,11 +4,11 @@
     "model_arch": "vit_base_resnet50d_224",
     "img_size_h": 224, 
     "img_size_w": 224, 
-    "epochs": 30,
+    "epochs": 40,
     "train_bs": 64,
     "valid_bs": 64,
     "T_0": 10,
-    "lr": 3e-4,
+    "lr": 2e-4,
     "min_lr": 3e-6, 
     "weight_decay": 1e-4,
     "num_workers": 4,
@@ -20,7 +20,7 @@
         9,
         10,
         11,
-        12,
+        12
     ],
     "weights": [
         1,
