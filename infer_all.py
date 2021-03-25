@@ -15,14 +15,14 @@ from sklearn.metrics import  log_loss
 # parser.add_argument('--config', default='./configs/default.json')
 # options = parser.parse_args()
 CFG_list = [
-    "resnext50_32x4d.json",
-    "tf_efficientnet_b1.json",
-    "tf_efficientnet_b2.json",
-    "tf_efficientnet_b3.json",
-    "tf_efficientnet_b4.json",
-    "vit_base_patch16_224.json",
-    "vit_base_resnet50d_224.json",
-    "vit_large_patch16_224.json"
+    "./configs/resnext50_32x4d.json",
+    "./configs/tf_efficientnet_b1.json",
+    "./configs/tf_efficientnet_b2.json",
+    "./configs/tf_efficientnet_b3.json",
+    "./configs/tf_efficientnet_b4.json",
+    "./configs/vit_base_patch16_224.json",
+    "./configs/vit_base_resnet50d_224.json",
+    "./configs/vit_large_patch16_224.json"
 ]
 
 # logger の設定
@@ -163,8 +163,9 @@ def infer(CFG):
 
 if __name__ == '__main__':
     for config_filename in CFG_list:
-        with open("./configs/"+config_filename) as f:
+        with open(config_filename) as f:
             CFG = json.load(f)
+        config_filename = os.path.splitext(os.path.basename(config_filename))[0]
         logger.debug(CFG)
         tst_preds_label_all = infer(CFG)
         print(tst_preds_label_all.shape)
