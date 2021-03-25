@@ -92,7 +92,7 @@ def main():
 
         loss_tr = nn.CrossEntropyLoss().to(device) #MyCrossEntropyLoss().to(device)
         loss_fn = nn.CrossEntropyLoss().to(device)
-        patience = 5
+        patience = 7
         early_stopping = EarlyStopping(patience=patience, verbose=True)
 
         for epoch in range(CFG['epochs']):
