@@ -137,8 +137,7 @@ def infer():
         val_loss.append(log_loss(valid_.label.values, val_preds))
         val_acc.append((valid_.label.values == np.argmax(val_preds, axis=1)).mean())
         oof_df.loc[val_idx, cols] = val_preds
-        oof_df.loc[val_idx, "label"] = train.loc[val_idx, "label"]
-
+        oof_df.loc[val_idx, "label"] = train.loc[val_idx, "label"
     logger.debug('validation loss = {:.5f}'.format(np.mean(val_loss)))
     logger.debug('validation accuracy = {:.5f}'.format(np.mean(val_acc)))
     tst_preds = np.mean(tst_preds, axis=0)

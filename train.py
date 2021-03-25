@@ -9,6 +9,7 @@ import pandas as pd
 import torch
 from torch import nn
 from sklearn.model_selection import StratifiedKFold
+from .utils import EarlyStopping
 
 # 引数で config の設定を行う
 parser = argparse.ArgumentParser()
@@ -91,15 +92,21 @@ def main():
 
         loss_tr = nn.CrossEntropyLoss().to(device) #MyCrossEntropyLoss().to(device)
         loss_fn = nn.CrossEntropyLoss().to(device)
+        patience = 5
+        early_stopping = EarlyStopping(patience=patience, verbose=True)
 
         for epoch in range(CFG['epochs']):
             train_one_epoch(epoch, model, loss_tr, optimizer, train_loader, device, CFG['verbose_step'],scheduler=scheduler, schd_batch_update=False)
 
             with torch.no_grad():
-                valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['verbose_step'], scheduler=None, schd_loss_update=False)
-
+                loss_val = valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['verbose_step'], scheduler=None, schd_loss_update=False)
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
+            # early stopping
+            early_stopping(loss_val)
+            if early_stopping.early_stop:
+                print("Early stopping")
+                break
         del model, optimizer, train_loader, val_loader,  scheduler
         torch.cuda.empty_cache()
         logger.debug("\n")

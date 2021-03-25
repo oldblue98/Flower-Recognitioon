@@ -84,6 +84,7 @@ def valid_one_epoch(epoch, model, loss_fn, val_loader, device, verbose_step, sch
             scheduler.step(loss_sum/sample_num)
         else:
             scheduler.step()
+    return loss_sum/sample_num
 
 
 def inference_one_epoch(model, data_loader, device):
