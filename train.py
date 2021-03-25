@@ -9,7 +9,7 @@ import pandas as pd
 import torch
 from torch import nn
 from sklearn.model_selection import StratifiedKFold
-from .utils import EarlyStopping
+from model.utils import EarlyStopping
 
 # 引数で config の設定を行う
 parser = argparse.ArgumentParser()
