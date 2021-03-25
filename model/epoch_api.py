@@ -76,15 +76,15 @@ def valid_one_epoch(epoch, model, loss_fn, val_loader, device, verbose_step, sch
     print("valid "+ description)
     image_preds_all = np.concatenate(image_preds_all)
     image_targets_all = np.concatenate(image_targets_all)
+    acc = (image_preds_all==image_targets_all).mean()
     print('validation multi-class accuracy = {:.4f}'.format((image_preds_all==image_targets_all).mean()))
-
 
     if scheduler is not None:
         if schd_loss_update:
             scheduler.step(loss_sum/sample_num)
         else:
             scheduler.step()
-    return loss_sum/sample_num
+    return loss_sum/sample_num, acc
 
 
 def inference_one_epoch(model, data_loader, device):

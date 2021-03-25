@@ -99,7 +99,9 @@ def main():
             train_one_epoch(epoch, model, loss_tr, optimizer, train_loader, device, CFG['verbose_step'],scheduler=scheduler, schd_batch_update=False)
 
             with torch.no_grad():
-                loss_val = valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['verbose_step'], scheduler=None, schd_loss_update=False)
+                loss_val, accuracy_val = valid_one_epoch(epoch, model, loss_fn, val_loader, device, CFG['verbose_step'], scheduler=None, schd_loss_update=False)
+            
+            logger.debug(f'epoch : {epoch}, loss_val : {loss_val}, accuracy_val = {accuracy_val:.4f}')
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
             # early stopping
