@@ -34,7 +34,7 @@ handler_stream = StreamHandler()
 handler_stream.setLevel(DEBUG)
 handler_stream.setFormatter(Formatter("%(asctime)s: %(message)s"))
 #handler2を作成
-config_filename = os.path.splitext(os.path.basename(options.config))[0]
+# config_filename = os.path.splitext(os.path.basename(options.config))[0]
 handler_file = FileHandler(filename=f'./logs/inference_all.log')
 handler_file.setLevel(DEBUG)
 handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
