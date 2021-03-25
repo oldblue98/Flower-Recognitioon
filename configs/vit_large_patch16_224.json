@@ -17,14 +17,12 @@
     "transform_way": "center",
     "tta": 5,
     "used_epochs": [
-        25,
-        26,
-        27,
-        28,
-        29
+        9,
+        10,
+        11,
+        12
     ],
     "weights": [
-        1,
         1,
         1,
         1,
