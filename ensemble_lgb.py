@@ -37,7 +37,7 @@ params = {
     'boosting_type': 'gbdt',
     'objective': 'multiclass',
     'metric': {'multi_logloss'},
-    'num_class': 4,
+    'num_class': 5,
     'learning_rate': 0.01,
     'max_depth': 4,
     'num_leaves':3,
