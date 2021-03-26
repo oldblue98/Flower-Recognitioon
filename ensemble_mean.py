@@ -87,7 +87,7 @@ def load_df(path, output_label=True):
         #     oof_df[config_filename + "_" + ]
         oof_df = pd.concat([one_df, oof_df], axis=1)
     if output_label:    
-        label = pd.read_csv(p)["label"]
+        label = pd.read_csv(data_path + p)["label"]
         return oof_df, label
     else:
         return oof_df
