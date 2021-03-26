@@ -123,7 +123,7 @@ def main():
 
     # スコア
     loss = log_loss(oof_label, y_preds_valid)
-    acc = (oof_label == np.argmax(y_preds_valid, axis=1)).mean()
+    acc = (oof_label == np.argmax(y_preds_valid, axis=1)).mean())
     print(f"\t log loss: {loss}")
     print(f"\t acc: {acc}")
 
