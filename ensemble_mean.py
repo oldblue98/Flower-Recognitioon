@@ -122,15 +122,15 @@ def main():
 
 
     # スコア
-    loss = log_loss(oof_label, y_preds_valid)
-    acc = (oof_label == np.argmax(y_preds_valid, axis=1)).mean())
-    print(f"\t log loss: {loss}")
+    # loss = log_loss(oof_label, y_preds_valid)
+    acc = (oof_label == np.argmax(y_preds_valid, axis=1)).mean()
+    # print(f"\t log loss: {loss}")
     print(f"\t acc: {acc}")
 
-    loss = sum(scores_loss) / len(scores_loss)
-    print('===CV scores loss===')
-    print(loss)
-    acc = sum(scores_acc) / len(scores_acc)
+    # loss = sum(scores_loss) / len(scores_loss)
+    # print('===CV scores loss===')
+    # print(loss)
+    # acc = sum(scores_acc) / len(scores_acc)
     print('===CV scores acc===')
     print(acc)
 
