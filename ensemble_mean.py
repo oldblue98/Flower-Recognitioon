@@ -80,12 +80,14 @@ class LightGBM():
 
 def load_df(path, output_label=True):
     oof_df = pd.DataFrame()
+    label = pd.DataFrame()
     for p in path:
-        one_df = pd.read_csv(data_path + p).drop("label", axis=1)
-        config_filename = os.path.splitext(os.path.basename(options.config))[0]
-        # for col in one_df.columns:
-        #     oof_df[config_filename + "_" + ]
-        oof_df = pd.concat([one_df, oof_df], axis=1)
+        if output_label:
+            one_df = pd.read_csv(data_path + p).drop("label", axis=1)
+            oof_df = pd.concat([one_df, oof_df], axis=1)
+        else:
+            one_df = pd.read_csv(data_path + p)
+            oof_df = pd.concat([one_df, oof_df], axis=1)
     if output_label:    
         label = pd.read_csv(data_path + p)["label"]
         return oof_df, label
@@ -96,7 +98,7 @@ def mean_df(path):
     oof_df = pd.DataFrame()
     count = 0
     for p in path:
-        one_df = pd.read_csv(data_path + p).drop("label", axis=1)
+        one_df = pd.read_csv(data_path + p)
         if count < 1:
             oof_df = one_df
             count += 1
@@ -113,7 +115,7 @@ def main():
     scores_loss = []
     scores_acc = []
     folds = StratifiedKFold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
-    y_preds_valid = mean_df(oof_path)
+    y_preds_valid = mean_df(oof_path).drop("label", axis=1)
     y_preds_test = mean_df(test_path)
 
 
