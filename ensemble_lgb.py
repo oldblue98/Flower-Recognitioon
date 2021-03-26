@@ -81,7 +81,7 @@ class LightGBM():
 def load_df(path, output_label=True):
     oof_df = pd.DataFrame()
     for p in path:
-        one_df = pd.read_csv(p).drop("label", axis=1)
+        one_df = pd.read_csv(data_path + p).drop("label", axis=1)
         config_filename = os.path.splitext(os.path.basename(options.config))[0]
         # for col in one_df.columns:
         #     oof_df[config_filename + "_" + ]
@@ -96,7 +96,7 @@ def mean_df(path):
     oof_df = pd.DataFrame()
     count = 0
     for p in path:
-        one_df = pd.read_csv(p).drop("label", axis=1)
+        one_df = pd.read_csv(data_path + p).drop("label", axis=1)
         if count < 1:
             oof_df = one_df
             count += 1
@@ -107,7 +107,7 @@ def mean_df(path):
     return oof_df
 
 def main():
-    oof_df, oof_label = load_df(data_path + oof_path)
+    oof_df, oof_label = load_df(oof_path)
     test_df = load_df(test_path, output_label=False)
 
     y_preds = []
