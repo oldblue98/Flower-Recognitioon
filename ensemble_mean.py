@@ -112,7 +112,7 @@ def main():
 
     scores_loss = []
     scores_acc = []
-    folds = StratifiedKfold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
+    folds = StratifiedKFold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
     y_preds_valid = mean_df(oof_path)
     y_preds_test = mean_df(test_path)
 

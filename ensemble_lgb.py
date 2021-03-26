@@ -7,7 +7,7 @@ import lightgbm as lgb
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import StratifiedKfold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import log_loss
 
 # 引数で config の設定を行う
@@ -113,7 +113,7 @@ def main():
     y_preds = []
     scores_loss = []
     scores_acc = []
-    folds = StratifiedKfold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
+    folds = StratifiedKFold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
 
     model = LightGBM()
     for fold, (tr_idx, val_idx) in enumerate(folds):
