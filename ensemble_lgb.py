@@ -120,7 +120,7 @@ def main():
     model = LightGBM(params)
     for fold, (tr_idx, val_idx) in enumerate(folds):
         X_train, X_valid = oof_df.iloc[tr_idx, :], oof_df.iloc[val_idx, :]
-        y_train, y_valid = oof_label.iloc[tr_idx, :], oof_label.iloc["label", :]
+        y_train, y_valid = oof_label.iloc[tr_idx, :], oof_label.iloc[val_idx, :]
         y_pred_valid, y_pred_test = model.train_and_predict(X_train, X_valid, y_train, y_valid, test_df)
         # 結果を保存
         y_preds.append(y_pred_test)
