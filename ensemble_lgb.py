@@ -33,7 +33,7 @@ handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
 logger.addHandler(handler_stream)
 logger.addHandler(handler_file)
 
-prams = {
+params = {
     'boosting_type': 'gbdt',
     'objective': 'multiclass',
     'metric': {'multi_logloss'},
@@ -117,7 +117,7 @@ def main():
     scores_acc = []
     folds = StratifiedKFold(n_splits=CFG["fold_num"], shuffle=True, random_state=CFG["seed"]).split(np.arange(oof_df.shape[0]), oof_label.values)
 
-    model = LightGBM()
+    model = LightGBM(params)
     for fold, (tr_idx, val_idx) in enumerate(folds):
         X_train, X_valid = oof_df.iloc[tr_idx, :], oof_df.iloc[val_idx, :]
         y_train, y_valid = oof_label.iloc[tr_idx, "label"], oof_label.loc[val_idx, "label"]
