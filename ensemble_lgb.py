@@ -148,7 +148,7 @@ def main():
         # 予測結果を保存
         sub = pd.read_csv("./data/sample_submission.csv")
         sub['class'] = np.argmax(tst_preds, axis=1)
-        label_dic = {"daisy":0, "dandelion":1, "rose":2,"sunflower":3, "tulip":4}
+        label_dic = {0:"daisy", 1:"dandelion", 2:"rose", 3:"sunflower", 4:"tulip"}
         sub["class"] = sub["class"].map(label_dic)
         logger.debug(sub.value_counts("class"))
         sub.to_csv(f'data/output/submission_ensemble_lgb.csv', index=False)
