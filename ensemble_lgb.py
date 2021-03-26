@@ -84,9 +84,11 @@ def load_df(path, output_label=True):
     for p in path:
         if output_label:
             one_df = pd.read_csv(data_path + p).drop("label", axis=1)
+            one_df = one_df.rename(columns=lambda s: s + p)
             oof_df = pd.concat([one_df, oof_df], axis=1)
         else:
             one_df = pd.read_csv(data_path + p)
+            one_df = one_df.rename(columns=lambda s: s + p)
             oof_df = pd.concat([one_df, oof_df], axis=1)
     if output_label:    
         label = pd.read_csv(data_path + p)["label"]
