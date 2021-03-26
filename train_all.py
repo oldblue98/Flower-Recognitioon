@@ -18,7 +18,7 @@ from model.utils import EarlyStopping
 # CFG = json.load(open(options.config))
 
 CFG_list = [
-    "./configs/resnext50_32x4d.json",
+    "./configs/resnext50_32x4d_ver2.json",
     # "./configs/tf_efficientnet_b1.json",
     # "./configs/tf_efficientnet_b2.json",
     "./configs/tf_efficientnet_b3_ver2.json",
@@ -36,8 +36,8 @@ handler_stream = StreamHandler()
 handler_stream.setLevel(DEBUG)
 handler_stream.setFormatter(Formatter("%(asctime)s: %(message)s"))
 #handler2を作成
-config_filename = os.path.splitext(os.path.basename(options.config))[0]
-handler_file = FileHandler(filename=f'./logs/all_{config_filename}_{CFG["model_arch"]}.log')
+# config_filename = os.path.splitext(os.path.basename(options.config))[0]
+handler_file = FileHandler(filename=f'./logs/train_all.log')
 handler_file.setLevel(DEBUG)
 handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
 #loggerに2つのハンドラを設定
@@ -65,7 +65,7 @@ def load_train_df(path):
     train_df["label"]=train_df["label"].map(label_dic)
     return train_df
 
-def main():
+def main(CFG):
 
     from model.transform import get_train_transforms, get_valid_transforms
     from model.dataloader import prepare_dataloader
@@ -127,4 +127,7 @@ def main():
         logger.debug("\n")
 
 if __name__ == '__main__':
-    main()
+    for config_filename in CFG_list:
+        with open(config_filename) as f:
+            CFG = json.load(f)
+        main(CFG)
