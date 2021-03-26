@@ -65,7 +65,7 @@ def load_train_df(path):
     train_df["label"]=train_df["label"].map(label_dic)
     return train_df
 
-def main(CFG):
+def main(CFG, config_filename):
 
     from model.transform import get_train_transforms, get_valid_transforms
     from model.dataloader import prepare_dataloader
@@ -130,4 +130,5 @@ if __name__ == '__main__':
     for config_filename in CFG_list:
         with open(config_filename) as f:
             CFG = json.load(f)
-        main(CFG)
+        config_filename = os.path.splitext(os.path.basename(config_filename))[0]
+        main(CFG, config_filename)
