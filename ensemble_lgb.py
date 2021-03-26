@@ -48,11 +48,15 @@ prams = {
 }
 
 oof_path = [
-
+    "tf_efficientnet_b2_tf_efficientnet_b2_oof.csv",
+    "vit_base_patch16_224_vit_base_patch16_224_oof.csv",
+    "vit_base_resnet50d_224_vit_base_resnet50d_224_oof.csv"
 ]
 
 test_path = [
-
+    "tf_efficientnet_b2_tf_efficientnet_b2_test.csv",
+    "vit_base_patch16_224_vit_base_patch16_224_test.csv",
+    "vit_base_resnet50d_224_vit_base_resnet50d_224_test.csv"
 ]
 
 data_path = "./data/output/"
@@ -103,7 +107,7 @@ def mean_df(path):
     return oof_df
 
 def main():
-    oof_df, oof_label = load_df(oof_path)
+    oof_df, oof_label = load_df(data_path + oof_path)
     test_df = load_df(test_path, output_label=False)
 
     y_preds = []
