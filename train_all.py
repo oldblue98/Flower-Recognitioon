@@ -23,7 +23,7 @@ CFG_list = [
     # "./configs/tf_efficientnet_b2_ver2.json",
     # "./configs/tf_efficientnet_b3_ver2.json",
     # "./configs/tf_efficientnet_b4_ver2.json",
-    "./configs/inception_resnet_v2.json",
+    # "./configs/inception_resnet_v2.json",
     "./configs/inception_resnet_v3.json",
     "./configs/seresnext50_32x4d.json",
     "./configs/skresnext50_32x4d.json",
