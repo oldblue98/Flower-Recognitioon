@@ -109,7 +109,7 @@ def main(CFG, config_filename):
         loss_fn = nn.CrossEntropyLoss().to(device)
         patience = CFG['patience']
         min_epoch = CFG['min_epoch']
-        early_stopping = EarlyStopping(patience=patience, verbose=True)
+        early_stopping = EarlyStopping(patience=patience, verbose=True, min_epoch=min_epoch)
 
         for epoch in range(CFG['epochs']):
             train_one_epoch(epoch, model, loss_tr, optimizer, train_loader, device, CFG['verbose_step'],scheduler=scheduler, schd_batch_update=False)
@@ -121,7 +121,7 @@ def main(CFG, config_filename):
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
             # early stopping
-            early_stopping(loss_val, min_epoch=min_epoch)
+            early_stopping(loss_val)
             if early_stopping.early_stop:
                 print("Early stopping")
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
