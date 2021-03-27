@@ -16,22 +16,7 @@ parser.add_argument('--config', default='./configs/default.json')
 options = parser.parse_args()
 CFG = json.load(open(options.config))
 
-# logger の設定
-from logging import getLogger, StreamHandler,FileHandler, Formatter, DEBUG, INFO
-logger = getLogger("logger")    #logger名loggerを取得
-logger.setLevel(DEBUG)  #loggerとしてはDEBUGで
-#handler1を作成
-handler_stream = StreamHandler()
-handler_stream.setLevel(DEBUG)
-handler_stream.setFormatter(Formatter("%(asctime)s: %(message)s"))
-#handler2を作成
-config_filename = os.path.splitext(os.path.basename(options.config))[0]
-handler_file = FileHandler(filename=f'./logs/ensemble_lgb.log')
-handler_file.setLevel(DEBUG)
-handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
-#loggerに2つのハンドラを設定
-logger.addHandler(handler_stream)
-logger.addHandler(handler_file)
+ensemble_name = "vsti"
 
 params = {
     'boosting_type': 'gbdt',
@@ -48,18 +33,47 @@ params = {
 }
 
 oof_path = [
-    "tf_efficientnet_b2_tf_efficientnet_b2_oof.csv",
-    "vit_base_patch16_224_vit_base_patch16_224_oof.csv",
-    "vit_base_resnet50d_224_vit_base_resnet50d_224_oof.csv"
+    # "tf_efficientnet_b2_ver2_tf_efficientnet_b2_oof.csv",
+    "vit_base_patch16_224_ver2_vit_base_patch16_224_oof.csv",#0.96
+    # "vit_base_resnet50d_224_ver2_vit_base_resnet50d_224_oof.csv", #0.93
+    # "skresnext50x32x4d_skresnext50x32x4d_oof.csv",#0.94
+    "seresnext50x32x4d_seresnext50x32x4d_oof.csv"#0.935
+    "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_oof.csv",#0.93
+    # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_oof.csv" #0.92
+    "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92
+
 ]
 
 test_path = [
-    "tf_efficientnet_b2_tf_efficientnet_b2_test.csv",
-    "vit_base_patch16_224_vit_base_patch16_224_test.csv",
-    "vit_base_resnet50d_224_vit_base_resnet50d_224_test.csv"
+    # "tf_efficientnet_b2_ver2_tf_efficientnet_b2_test.csv",
+    "vit_base_patch16_224_ver2_vit_base_patch16_224_test.csv",#0.96
+    # "vit_base_resnet50d_224_ver2_vit_base_resnet50d_224_test.csv", #0.93
+    "skresnext50x32x4d_skresnext50x32x4d_test.csv",#0.94
+    # "seresnext50x32x4d_seresnext50x32x4d_oof.csv"#0.935
+    "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_test.csv",#0.93
+    # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_test.csv" #0.92
+    "inception_resnet_v2_inception_resnet_v2_test.csv"#0.92
 ]
 
 data_path = "./data/output/"
+
+# logger の設定
+from logging import getLogger, StreamHandler,FileHandler, Formatter, DEBUG, INFO
+logger = getLogger("logger")    #logger名loggerを取得
+logger.setLevel(DEBUG)  #loggerとしてはDEBUGで
+#handler1を作成
+handler_stream = StreamHandler()
+handler_stream.setLevel(DEBUG)
+handler_stream.setFormatter(Formatter("%(asctime)s: %(message)s"))
+#handler2を作成
+config_filename = os.path.splitext(os.path.basename(options.config))[0]
+handler_file = FileHandler(filename=f'./logs/ensemble_{ensemble_name}_lgb.log')
+handler_file.setLevel(DEBUG)
+handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
+#loggerに2つのハンドラを設定
+logger.addHandler(handler_stream)
+logger.addHandler(handler_file)
+
 
 class LightGBM():
     def __init__(self, params):
@@ -157,7 +171,7 @@ def main():
         label_dic = {0:"daisy", 1:"dandelion", 2:"rose", 3:"sunflower", 4:"tulip"}
         sub["class"] = sub["class"].map(label_dic)
         logger.debug(sub.value_counts("class"))
-        sub.to_csv(f'data/output/submission_ensemble_lgb.csv', index=False)
+        sub.to_csv(f'data/output/submission_ensemble_{ensemble_name}_lgb.csv', index=False)
 
 if __name__ == '__main__':
     main()
