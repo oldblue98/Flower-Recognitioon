@@ -15,9 +15,9 @@ from sklearn.metrics import  log_loss
 # parser.add_argument('--config', default='./configs/default.json')
 # options = parser.parse_args()
 CFG_list = [
-    "./configs/resnext50_32x4d_ver2.json",
+    # "./configs/resnext50_32x4d_ver2.json",
     # "./configs/tf_efficientnet_b1.json",
-    "./configs/tf_efficientnet_b2_ver2.json",
+    # "./configs/tf_efficientnet_b2_ver2.json",
     "./configs/tf_efficientnet_b3_ver2.json",
     "./configs/tf_efficientnet_b4_ver2.json",
     # "./configs/vit_base_patch16_224.json",

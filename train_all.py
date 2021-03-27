@@ -18,13 +18,17 @@ from model.utils import EarlyStopping
 # CFG = json.load(open(options.config))
 
 CFG_list = [
-    "./configs/resnext50_32x4d_ver2.json",
+    # "./configs/resnext50_32x4d_ver2.json",
     # "./configs/tf_efficientnet_b1.json",
-    "./configs/tf_efficientnet_b2_ver2.json",
-    "./configs/tf_efficientnet_b3_ver2.json",
-    "./configs/tf_efficientnet_b4_ver2.json",
+    # "./configs/tf_efficientnet_b2_ver2.json",
+    # "./configs/tf_efficientnet_b3_ver2.json",
+    # "./configs/tf_efficientnet_b4_ver2.json",
     "./configs/vit_base_patch16_224_ver2.json",
-    "./configs/vit_base_resnet50d_224_ver2.json"
+    "./configs/vit_base_resnet50d_224_ver2.json",
+    "./configs/inception_resnet_v2.json",
+    "./configs/inception_resnet_v3.json",
+    "./configs/seresnext50_32x4d.json",
+    "./configs/skresnext50_32x4d.json"
 ]
 
 # logger の設定
