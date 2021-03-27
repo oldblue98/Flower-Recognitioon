@@ -25,6 +25,11 @@ CFG_list = [
     "./configs/vit_base_patch16_224_ver2.json",
     "./configs/vit_base_resnet50d_224_ver2.json",
     # "./configs/vit_large_patch16_224.json"
+    "./configs/inception_resnet_v2.json",
+    "./configs/seresnext50_32x4d.json",
+    "./configs/tf_efficientnet_b2_ns.json",
+    "./configs/tf_efficientnet_b3_ns.json",
+    "./configs/skresnext50_32x4d.json"
 ]
 
 # logger の設定
