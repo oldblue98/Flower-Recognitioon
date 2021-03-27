@@ -16,7 +16,7 @@ parser.add_argument('--config', default='./configs/default.json')
 options = parser.parse_args()
 CFG = json.load(open(options.config))
 
-ensemble_name = "vsti"
+ensemble_name = "vst"
 
 params = {
     'boosting_type': 'gbdt',
@@ -40,7 +40,7 @@ oof_path = [
     "seresnext50_32x4d_seresnext50_32x4d_oof.csv",#0.935
     "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_oof.csv",#0.93
     # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_oof.csv", #0.92
-    "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92
+    # "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92
 
 ]
 
@@ -52,7 +52,7 @@ test_path = [
     "seresnext50_32x4d_seresnext50_32x4d_test.csv",#0.935
     "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_test.csv",#0.93
     # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_test.csv", #0.92
-    "inception_resnet_v2_inception_resnet_v2_test.csv"#0.92
+    # "inception_resnet_v2_inception_resnet_v2_test.csv"#0.92
 ]
 
 data_path = "./data/output/"
