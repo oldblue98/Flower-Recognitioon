@@ -20,7 +20,7 @@ from model.utils import EarlyStopping
 CFG_list = [
     "./configs/resnext50_32x4d_ver2.json",
     # "./configs/tf_efficientnet_b1.json",
-    # "./configs/tf_efficientnet_b2.json",
+    "./configs/tf_efficientnet_b2_ver2.json",
     "./configs/tf_efficientnet_b3_ver2.json",
     "./configs/tf_efficientnet_b4_ver2.json",
     "./configs/vit_base_patch16_224_ver2.json",
@@ -120,6 +120,7 @@ def main(CFG, config_filename):
                 early_stopping(loss_val)
             if early_stopping.early_stop:
                 print("Early stopping")
+                logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
                 break
         del model, optimizer, train_loader, val_loader,  scheduler

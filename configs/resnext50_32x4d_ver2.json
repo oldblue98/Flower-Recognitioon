@@ -5,8 +5,8 @@
     "img_size_h": 224, 
     "img_size_w": 224, 
     "epochs": 40,
-    "min_epoch":10,
-    "patience":10,
+    "min_epoch":5,
+    "patience":7,
     "train_bs": 64,
     "valid_bs": 64,
     "T_0": 10,
@@ -19,13 +19,11 @@
     "transform_way": "center",
     "tta": 5,
     "used_epochs": [
-        6,
         7,
         8,
         9
     ],
     "weights": [
-        1,
         1,
         1,
         1
