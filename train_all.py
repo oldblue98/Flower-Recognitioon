@@ -24,7 +24,6 @@ CFG_list = [
     # "./configs/tf_efficientnet_b3_ver2.json",
     # "./configs/tf_efficientnet_b4_ver2.json",
     # "./configs/inception_resnet_v2.json",
-    "./configs/inception_resnet_v3.json",
     "./configs/seresnext50_32x4d.json",
     "./configs/skresnext50_32x4d.json",
     "./configs/tf_efficientnet_b2_ns.json",
@@ -88,8 +87,9 @@ def main(CFG, config_filename):
 
     for fold, (trn_idx, val_idx) in enumerate(folds):
     
-        if fold > 0:
-            break
+        # debug
+        # if fold > 0:
+        #     break
         
         logger.debug(f'Training with fold {fold} started (train:{len(trn_idx)}, val:{len(val_idx)})')
 
