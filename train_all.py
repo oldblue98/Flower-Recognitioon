@@ -23,14 +23,15 @@ CFG_list = [
     # "./configs/tf_efficientnet_b2_ver2.json",
     # "./configs/tf_efficientnet_b3_ver2.json",
     # "./configs/tf_efficientnet_b4_ver2.json",
-    # "./configs/vit_base_patch16_224_ver2.json",
-    # "./configs/vit_base_resnet50d_224_ver2.json",
     "./configs/inception_resnet_v2.json",
     "./configs/inception_resnet_v3.json",
     "./configs/seresnext50_32x4d.json",
-    "./configs/skresnext50_32x4d.json"
+    "./configs/skresnext50_32x4d.json",
+    "./configs/tf_efficientnet_b2_ns.json",
+    "./configs/tf_efficientnet_b3_ns.json",
+    "./configs/vit_base_patch16_224_ver2.json",
+    "./configs/vit_base_resnet50d_224_ver2.json"
 ]
-
 # logger の設定
 from logging import getLogger, StreamHandler,FileHandler, Formatter, DEBUG, INFO
 logger = getLogger("logger")    #logger名loggerを取得
@@ -120,8 +121,7 @@ def main(CFG, config_filename):
             torch.save(model.state_dict(),f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}')
 
             # early stopping
-            if epoch > min_epoch:
-                early_stopping(loss_val)
+            early_stopping(loss_val, min_epoch=min_epoch)
             if early_stopping.early_stop:
                 print("Early stopping")
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')

@@ -8,8 +8,8 @@
     "train_bs": 64,
     "valid_bs": 64,
     "T_0": 10,
-    "lr": 2e-4,
-    "min_lr": 3e-6, 
+    "lr": 1e-4,
+    "min_lr": 1e-6, 
     "weight_decay": 1e-4,
     "num_workers": 4,
     "verbose_step": 1,
@@ -17,10 +17,10 @@
     "transform_way": "center",
     "tta": 5,
     "used_epochs": [
-        9,
-        10,
-        11,
-        12
+        6,
+        7,
+        8,
+        9
     ],
     "weights": [
         1,
