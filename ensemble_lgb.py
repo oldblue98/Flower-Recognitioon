@@ -38,9 +38,9 @@ oof_path = [
     # "vit_base_resnet50d_224_ver2_vit_base_resnet50d_224_oof.csv", #0.93
     "skresnext50_32x4d_skresnext50_32x4d_oof.csv",#0.94
     # "seresnext50_32x4d_seresnext50_32x4d_oof.csv",#0.935
-    "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_oof.csv",#0.93
+    # "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_oof.csv",#0.93
     # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_oof.csv", #0.92
-    "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92
+    # "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92
 
 ]
 
@@ -50,9 +50,9 @@ test_path = [
     # "vit_base_resnet50d_224_ver2_vit_base_resnet50d_224_test.csv", #0.93
     "skresnext50_32x4d_skresnext50_32x4d_test.csv",#0.94
     # "seresnext50_32x4d_seresnext50_32x4d_test.csv",#0.935
-    "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_test.csv",#0.93
+    # "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_test.csv",#0.93
     # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_test.csv", #0.92
-    "inception_resnet_v2_inception_resnet_v2_test.csv"#0.92
+    # "inception_resnet_v2_inception_resnet_v2_test.csv"#0.92
 ]
 
 data_path = "./data/output/"
