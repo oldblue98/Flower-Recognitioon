@@ -16,7 +16,7 @@ parser.add_argument('--config', default='./configs/default.json')
 options = parser.parse_args()
 CFG = json.load(open(options.config))
 
-ensemble_name = "vst"
+ensemble_name = "vskt"
 
 params = {
     'boosting_type': 'gbdt',
@@ -36,8 +36,8 @@ oof_path = [
     # "tf_efficientnet_b2_ver2_tf_efficientnet_b2_oof.csv",
     "vit_base_patch16_224_ver2_vit_base_patch16_224_oof.csv",#0.96
     # "vit_base_resnet50d_224_ver2_vit_base_resnet50d_224_oof.csv", #0.93
-    # "skresnext50_32x4d_skresnext50_32x4d_oof.csv",#0.94
-    "seresnext50_32x4d_seresnext50_32x4d_oof.csv",#0.935
+    "skresnext50_32x4d_skresnext50_32x4d_oof.csv",#0.94
+    # "seresnext50_32x4d_seresnext50_32x4d_oof.csv",#0.935
     "tf_efficientnet_b2_ns_tf_efficientnet_b2_ns_oof.csv",#0.93
     # "tf_efficientnet_b3_ns_tf_efficientnet_b3_ns_oof.csv", #0.92
     # "inception_resnet_v2_inception_resnet_v2_oof.csv"#0.92

@@ -125,7 +125,6 @@ def main(CFG, config_filename):
             if early_stopping.early_stop:
                 print("Early stopping")
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
-                logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
                 break
         del model, optimizer, train_loader, val_loader,  scheduler
         torch.cuda.empty_cache()
