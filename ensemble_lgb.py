@@ -16,7 +16,7 @@ parser.add_argument('--config', default='./configs/default.json')
 options = parser.parse_args()
 CFG = json.load(open(options.config))
 
-ensemble_name = "vskt"
+ensemble_name = "vsk"
 
 params = {
     'boosting_type': 'gbdt',
