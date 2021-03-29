@@ -17,11 +17,11 @@ parser.add_argument('--debug', default=False)
 options = parser.parse_args()
 
 CFG_list = [
-    "./configs/resnext50_32x4d_ver2.json",
-    "./configs/tf_efficientnet_b1.json",
-    "./configs/tf_efficientnet_b2_ver2.json",
-    "./configs/tf_efficientnet_b3_ver2.json",
-    "./configs/tf_efficientnet_b4_ver2.json",
+    # "./configs/resnext50_32x4d_ver2.json",
+    # "./configs/tf_efficientnet_b1.json",
+    # "./configs/tf_efficientnet_b2_ver2.json",
+    # "./configs/tf_efficientnet_b3_ver2.json",
+    # "./configs/tf_efficientnet_b4_ver2.json",
     "./configs/tf_efficientnet_b5.json",
     "./configs/tf_efficientnet_b6.json",
     "./configs/inception_resnet_v2.json",
