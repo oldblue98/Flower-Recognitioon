@@ -1,5 +1,5 @@
-#Flowers-Recognition
-##今回のまとめ
+# Flowers-Recognition
+## 今回のまとめ
 今回は,前回のgalaコンペの村上さんと田中さんのコードにかなり助けて頂きました。ありがとうございます。  
 最終的な提出物は、timmで多数のモデルを作り、そのアンサンブルからよかったものを採用しました。
 Vision Transformaer (vit_base_patch16_224_ver2_vit_base_patch16_224)  
