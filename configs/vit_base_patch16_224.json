@@ -15,7 +15,7 @@
     "weight_decay": 1e-4,
     "num_workers": 4,
     "verbose_step": 1,
-    "device": "cuda:0",
+    "device": "cuda:1",
     "transform_way": "center",
     "tta": 5,
     "used_epochs": [
