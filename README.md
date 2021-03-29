@@ -1,7 +1,9 @@
 # Flowers-Recognition
 ## 今回のやったこと
 様々なモデルを学習し、Light-gbmでアンサンブル  
-early stoppingを使用し、epoch数などハイパーパラメータの調整になるべく時間がかからないように
+アンサンブルで効果が出やすいように、できるだけ多様なモデルを使用  
+early stoppingを使用し、epoch数などハイパーパラメータの調整になるべく時間がかからないように  
+その他、スケジューラー等は前回コンペを参考にいくつか試してみた
 
 ### 学習させてみたモデル
 * Vision Transformer (resnetのハイブリッド版も使用)
@@ -15,5 +17,5 @@ early stoppingを使用し、epoch数などハイパーパラメータの調整�
 * SE-ResNeXt (seresnext50_32x4d)
 * Efficientnet_b2 (tf_efficientnet_b2)
 
-### special thanks
+#### 謝辞
 今回は,前回のgalaコンペの村上さんと田中さんのコードにかなり助けて頂きました。ありがとうございます！
