@@ -82,7 +82,7 @@ def main(CFG, config_filename):
     logger.debug(CFG)
 
     train = load_train_df("./data/train/")
-
+    CFG["best_epoch"] = {}
     seed_everything(CFG['seed'])
 
     folds = StratifiedKFold(n_splits=CFG['fold_num'], shuffle=True, random_state=CFG['seed']).split(np.arange(train.shape[0]), train.label.values)
@@ -128,10 +128,14 @@ def main(CFG, config_filename):
             if early_stopping.early_stop:
                 print("Early stopping")
                 logger.debug(f'Finished epoch : {epoch}, patience : {patience}')
+                CFG["best_epoch"][fold] = epoch
                 break
+        
         del model, optimizer, train_loader, val_loader,  scheduler
         torch.cuda.empty_cache()
         logger.debug("\n")
+    with open(config_filename, 'w') as f:
+        json.dump(CFG, f, indent=4)
 
 if __name__ == '__main__':
     for config_filename in CFG_list:
