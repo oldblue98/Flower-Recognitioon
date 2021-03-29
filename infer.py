@@ -13,6 +13,7 @@ from sklearn.metrics import  log_loss
 # 引数で config の設定を行う
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', default='./configs/default.json')
+parser.add_argument('--debug', default=False)
 options = parser.parse_args()
 CFG = json.load(open(options.config))
 
@@ -89,10 +90,10 @@ def infer():
     y_preds_df = pd.DataFrame(index=[i for i in range(test.shape[0])], columns=cols)
 
     for fold, (trn_idx, val_idx) in enumerate(folds):
-        """
-        if fold > 0:
+        # debug
+        if fold > 0 and options.debug:
             break
-        """
+
         logger.debug(' fold {} started'.format(fold))
         input_shape=(CFG["img_size_h"], CFG["img_size_w"])
 

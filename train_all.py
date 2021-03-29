@@ -12,23 +12,24 @@ from sklearn.model_selection import StratifiedKFold
 from model.utils import EarlyStopping
 
 # 引数で config の設定を行う
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--config', default='./configs/default.json')
-# options = parser.parse_args()
-# CFG = json.load(open(options.config))
+parser = argparse.ArgumentParser()
+parser.add_argument('--debug', default=False)
+options = parser.parse_args()
 
 CFG_list = [
-    # "./configs/resnext50_32x4d_ver2.json",
-    # "./configs/tf_efficientnet_b1.json",
-    # "./configs/tf_efficientnet_b2_ver2.json",
-    # "./configs/tf_efficientnet_b3_ver2.json",
-    # "./configs/tf_efficientnet_b4_ver2.json",
+    "./configs/resnext50_32x4d_ver2.json",
+    "./configs/tf_efficientnet_b1.json",
+    "./configs/tf_efficientnet_b2_ver2.json",
+    "./configs/tf_efficientnet_b3_ver2.json",
+    "./configs/tf_efficientnet_b4_ver2.json",
+    "./configs/tf_efficientnet_b5.json",
+    "./configs/tf_efficientnet_b6.json",
     "./configs/inception_resnet_v2.json",
     "./configs/seresnext50_32x4d.json",
     "./configs/vit_base_patch16_224_ver2.json",
     "./configs/vit_base_resnet50d_224_ver2.json",
-    "./configs/tf_efficientnet_b2_ns.json",
-    "./configs/tf_efficientnet_b3_ns.json",
+    # "./configs/tf_efficientnet_b2_ns.json",
+    # "./configs/tf_efficientnet_b3_ns.json",
     "./configs/skresnext50_32x4d.json"
 ]
 # logger の設定
@@ -88,8 +89,8 @@ def main(CFG, config_filename):
     for fold, (trn_idx, val_idx) in enumerate(folds):
     
         # debug
-        # if fold > 0:
-        #     break
+        if fold > 0 and options.debug:
+            break
         
         logger.debug(f'Training with fold {fold} started (train:{len(trn_idx)}, val:{len(val_idx)})')
 
@@ -100,10 +101,11 @@ def main(CFG, config_filename):
         model = FlowerImgClassifier(CFG['model_arch'], train.label.nunique(), pretrained=True).to(device)
 
         optimizer = torch.optim.Adam(model.parameters(), lr=CFG['lr'], weight_decay=CFG['weight_decay'])
-        #scheduler = torch.optim.lr_scheduler.StepLR(optimizer, gamma=0.1, step_size=CFG['epochs']-1)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=CFG['T_0'], T_mult=1, eta_min=CFG['min_lr'], last_epoch=-1)
-        #scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer=optimizer, pct_start=0.1, div_factor=25,
+        # scheduler = torch.optim.lr_scheduler.StepLR(optimizer, gamma=0.1, step_size=CFG['epochs']-1)
+        # scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=CFG['T_0'], T_mult=1, eta_min=CFG['min_lr'], last_epoch=-1)
+        # scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer=optimizer, pct_start=0.1, div_factor=25,
         #                                                max_lr=CFG['lr'], epochs=CFG['epochs'], steps_per_epoch=len(train_loader))
+        scheduler = None
 
         loss_tr = nn.CrossEntropyLoss().to(device) #MyCrossEntropyLoss().to(device)
         loss_fn = nn.CrossEntropyLoss().to(device)

@@ -110,19 +110,6 @@ def load_df(path, output_label=True):
     else:
         return oof_df
 
-def mean_df(path):
-    oof_df = pd.DataFrame()
-    count = 0
-    for p in path:
-        one_df = pd.read_csv(data_path + p)
-        if count < 1:
-            oof_df = one_df
-            count += 1
-            continue
-        oof_df = oof_df + one_df
-    oof_df = oof_df / len(path)
-    # oof_df = np.argmax(oof_df, axis=1)
-    return oof_df
 
 def main():
     oof_df, oof_label = load_df(oof_path)
@@ -145,24 +132,19 @@ def main():
         scores_loss.append(loss)
         acc = (y_valid == np.argmax(y_pred_valid, axis=1)).mean()
         scores_acc.append(acc)
-        logger.debug(f"\t log loss: {loss}")
-        logger.debug(f"\t acc: {acc}")
-        # print(f"\t log loss: {loss}")
-        # print(f"\t acc: {acc}")
+        # loss accの記録
+        logger.debug(f"log loss: {loss}")
+        logger.debug(f"acc: {acc}")
 
         loss = sum(scores_loss) / len(scores_loss)
         logger.debug('===CV scores loss===')
-        logger.debug(f'scores_loss:{scores_loss}, loss:{loss}')
-        # print('===CV scores loss===')
-        # print(scores_loss)
-        # print(loss)
+        logger.debug(f'scores_loss:{scores_loss}\n mean_loss:{loss}')
+        
         acc = sum(scores_acc) / len(scores_acc)
         logger.debug('===CV scores acc===')
-        logger.debug(f'scores_acc:{scores_acc}, acc:{acc}')
-        # # print('===CV scores acc===')
-        # print(scores_acc)
-        # print(acc)
+        logger.debug(f'scores_acc:{scores_acc}\n mean_acc:{acc}')
 
+        # foldごとのtest推定値を平均
         tst_preds = np.mean(y_preds, axis=0)
 
         # 予測結果を保存

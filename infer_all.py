@@ -10,10 +10,11 @@ from torch import nn
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import  log_loss
 
-# 引数で config の設定を行う
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--config', default='./configs/default.json')
-# options = parser.parse_args()
+# 引数で debug の設定を行う
+parser = argparse.ArgumentParser()
+parser.add_argument('--debug', default=False)
+options = parser.parse_args()
+
 CFG_list = [
     # "./configs/resnext50_32x4d_ver2.json",
     # "./configs/tf_efficientnet_b1.json",
@@ -41,7 +42,6 @@ handler_stream = StreamHandler()
 handler_stream.setLevel(DEBUG)
 handler_stream.setFormatter(Formatter("%(asctime)s: %(message)s"))
 #handler2を作成
-# config_filename = os.path.splitext(os.path.basename(options.config))[0]
 handler_file = FileHandler(filename=f'./logs/inference_all.log')
 handler_file.setLevel(DEBUG)
 handler_file.setFormatter(Formatter("%(asctime)s: %(message)s"))
@@ -55,13 +55,14 @@ from model.model import FlowerImgClassifier
 from model.epoch_api import train_one_epoch, valid_one_epoch, inference_one_epoch
 from model.utils import seed_everything
 
-
+# testのpath取得
 test = pd.DataFrame()
 base_test_data_path = './data/test/'
 test['image_path'] = [os.path.join(base_test_data_path, f) for f in os.listdir('./data/test/')]
 test = test.sort_values('image_path').reset_index(drop=True)
 
 def load_train_df(path):
+    # path, labelのdfをロード
     train_df = pd.DataFrame()
     base_train_data_path = path
 
@@ -90,7 +91,6 @@ def infer(CFG):
 
     folds = StratifiedKFold(n_splits=CFG['fold_num'], shuffle=True, random_state=CFG['seed']).split(np.arange(train.shape[0]), train.label.values)
 
-
     tst_preds = []
     val_loss = []
     val_acc = []
@@ -105,10 +105,10 @@ def infer(CFG):
     y_preds_df = pd.DataFrame(index=[i for i in range(test.shape[0])], columns=cols)
 
     for fold, (trn_idx, val_idx) in enumerate(folds):
-        """
-        if fold > 0:
+        # debug用
+        if fold > 0 and options.debug:
             break
-        """
+
         logger.debug(' fold {} started'.format(fold))
         input_shape=(CFG["img_size_h"], CFG["img_size_w"])
 
@@ -139,7 +139,6 @@ def infer(CFG):
 
         val_preds = []
 
-        #for epoch in range(CFG['epochs']-3):
         for i, epoch in enumerate(CFG['used_epochs']):
             model.load_state_dict(torch.load(f'save/all_{config_filename}_{CFG["model_arch"]}_fold_{fold}_{epoch}'))
             logger.debug("epoch:{}".format(epoch))
