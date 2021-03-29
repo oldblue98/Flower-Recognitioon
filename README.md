@@ -3,8 +3,8 @@
 様々なモデルを学習し、Light-gbmでアンサンブル
 
 ### 学習させてみたモデル
-・Vision Transformer (resnetのハイブリッド版も使用)
-・SE-ResNeXt
+* Vision Transformer (resnetのハイブリッド版も使用)
+* SE-ResNeXt
 ・SK-ResNeXt
 ・Efficientnet_b2~b4
 ・Inception_Resnet_v2
@@ -14,5 +14,5 @@
 ・SE-ResNeXt (seresnext50_32x4d_seresnext50_32x4d)
 ・Efficientnet_b2(tf_efficientnet_b2_ver2_tf_efficientnet_b2_oof)
 
-## special thanks
+### special thanks
 今回は,前回のgalaコンペの村上さんと田中さんのコードにかなり助けて頂きました。ありがとうございます！
